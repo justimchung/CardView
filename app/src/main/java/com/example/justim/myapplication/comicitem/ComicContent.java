@@ -77,8 +77,8 @@ public class ComicContent {
         public final String id;
         public final String title;
         public final String details;
-        public final int numlikes;
-        public final boolean isFavoriate;
+        public int numlikes;
+        public boolean isFavoriate;
         public final int imgID;
 
         public ComicItem(String id, String title, String details, int numlikes, boolean isFavoriate, int imgID) {
