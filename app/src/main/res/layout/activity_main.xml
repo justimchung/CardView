@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.justim.myapplication.MainActivity">
 
-    <android.support.v7.widget.CardView
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.justim.myapplication.ComicItemFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

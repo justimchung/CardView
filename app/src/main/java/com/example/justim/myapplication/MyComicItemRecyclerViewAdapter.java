@@ -37,10 +37,10 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
+        //holder.mIdView.setText(mValues.get(position).id);
         holder.tvTitle.setText(mValues.get(position).title);
         holder.ivCover.setImageResource(mValues.get(position).imgID);
-        holder.tvLikes.setText(mValues.get(position).numlikes);
+        holder.tvLikes.setText(String.valueOf(mValues.get(position).numlikes));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
+        //public final TextView mIdView;
         public final TextView tvTitle;
         public final TextView tvLikes;
         public final ImageView ivCover;
@@ -71,7 +71,7 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.id);
+            //mIdView = view.findViewById(R.id.id);
             tvTitle = view.findViewById(R.id.tvTitle);
             tvLikes = view.findViewById(R.id.tvLikeNum);
             ivCover = view.findViewById(R.id.ivCover);

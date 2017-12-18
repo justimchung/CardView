@@ -75,15 +75,15 @@ public class ComicContent {
      */
     public static class ComicItem {
         public final String id;
-        public final String content;
+        public final String title;
         public final String details;
         public final int numlikes;
         public final boolean isFavoriate;
         public final int imgID;
 
-        public ComicItem(String id, String content, String details, int numlikes, boolean isFavoriate, int imgID) {
+        public ComicItem(String id, String title, String details, int numlikes, boolean isFavoriate, int imgID) {
             this.id = id;
-            this.content = content;
+            this.title = title;
             this.details = details;
             this.numlikes = numlikes;
             this.isFavoriate = isFavoriate;
@@ -92,7 +92,7 @@ public class ComicContent {
 
         @Override
         public String toString() {
-            return content;
+            return title;
         }
     }
 }
