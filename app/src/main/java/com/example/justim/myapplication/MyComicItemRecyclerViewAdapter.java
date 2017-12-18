@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +43,22 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
         holder.ivCover.setImageResource(mValues.get(position).imgID);
         holder.tvLikes.setText(String.valueOf(mValues.get(position).numlikes) + " likes");
 
+        holder.btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImageButton btnLike = (ImageButton)(view);
+                int fav = Integer.valueOf((String)btnLike.getTag());
+                if(fav == 0) {
+                    int pos = holder.getAdapterPosition();
+                    ComicItem ci = mValues.get(pos);
+                    ci.numlikes++;
+                    btnLike.setTag("1");
+                    btnLike.setImageResource(R.drawable.fav_red_24dp);
+                    notifyItemChanged(pos);
+                }
+            }
+        });
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +82,7 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
         public final TextView tvTitle;
         public final TextView tvLikes;
         public final ImageView ivCover;
+        public final ImageButton btnLike;
 
         public ComicItem mItem;
 
@@ -75,6 +93,7 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
             tvTitle = view.findViewById(R.id.tvTitle);
             tvLikes = view.findViewById(R.id.tvLikeNum);
             ivCover = view.findViewById(R.id.ivCover);
+            btnLike = view.findViewById(R.id.btnLike);
         }
 
         @Override
