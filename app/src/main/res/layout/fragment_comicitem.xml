@@ -50,12 +50,13 @@
                 android:paddingRight="8dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/btnLike"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/btn_feed_action"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/fav_gray_24dp" />
+                    android:src="@drawable/fav_gray_24dp"
+                    android:tag="0" />
 
                 <ImageButton
                     android:id="@+id/btnFav"
