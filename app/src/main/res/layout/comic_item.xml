@@ -71,14 +71,15 @@
                         android:id="@+id/imageView2"
                         android:layout_width="36dp"
                         android:layout_height="24dp"
-                        app:srcCompat="@drawable/fav_red_24dp" />
+                        android:src="@drawable/fav_red_24dp" />
 
                     <TextView
                         android:id="@+id/tvLikeNum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="87 likes"
-                        android:textAlignment="viewEnd" />
+                        android:textAlignment="viewEnd"
+                        android:gravity="end" />
                 </LinearLayout>
             </LinearLayout>
 
