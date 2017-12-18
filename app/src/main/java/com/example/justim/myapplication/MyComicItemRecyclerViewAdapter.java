@@ -40,7 +40,7 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
         //holder.mIdView.setText(mValues.get(position).id);
         holder.tvTitle.setText(mValues.get(position).title);
         holder.ivCover.setImageResource(mValues.get(position).imgID);
-        holder.tvLikes.setText(String.valueOf(mValues.get(position).numlikes));
+        holder.tvLikes.setText(String.valueOf(mValues.get(position).numlikes) + " likes");
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
