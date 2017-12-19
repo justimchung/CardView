@@ -25,6 +25,7 @@ import java.util.List;
  */
 public class FavoriateComicItemFragment extends ComicItemFragment {
     private List<ComicContent.ComicItem> fav_items;
+    private MyComicItemRecyclerViewAdapter adapter;
 
     // TODO: Customize parameters
     //private int mColumnCount = 1;
@@ -36,6 +37,7 @@ public class FavoriateComicItemFragment extends ComicItemFragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public FavoriateComicItemFragment() {
+        adapter = null;
     }
 
     @Override
@@ -44,6 +46,7 @@ public class FavoriateComicItemFragment extends ComicItemFragment {
         fav_items = new ArrayList<>();
         List<ComicContent.ComicItem> aItems = ComicContent.ITEMS;
         filterFavoriateItems();
+        adapter = new MyComicItemRecyclerViewAdapter(fav_items, super.mListener);
     }
 
     private void filterFavoriateItems() {
@@ -57,12 +60,32 @@ public class FavoriateComicItemFragment extends ComicItemFragment {
     @Override
     protected void setAdapter(RecyclerView recyclerView) {
         //super.setAdapter(recyclerView);
-        recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(fav_items, super.mListener));
+        recyclerView.setAdapter(adapter);
+        adapter.setFavBtnClickListener(favBtnClickListener);
     }
 
     public void reflash() {
         filterFavoriateItems();
     }
+
+    View.OnClickListener favBtnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RecyclerView.ViewHolder vh = rcComicItems.findContainingViewHolder(view);
+            int pos = vh.getAdapterPosition();
+            ComicContent.ComicItem ci = fav_items.get(pos);
+            if(ci.isFavoriate == false) {
+                ci.isFavoriate = true;
+                ci.numlikes++;
+
+            } else {
+                ci.isFavoriate = false;
+                ci.numlikes--;
+            }
+            fav_items.remove(pos);
+            adapter.notifyItemRemoved(pos);
+        }
+    };
 
     //    @Override
 //    public View onCreateView(LayoutInflater inflater, ViewGroup container,

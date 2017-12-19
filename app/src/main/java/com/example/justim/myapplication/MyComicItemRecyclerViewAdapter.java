@@ -22,10 +22,16 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
 
     private final List<ComicItem> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private View.OnClickListener favBtnClickListener;
 
     public MyComicItemRecyclerViewAdapter(List<ComicItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        favBtnClickListener = null;
+    }
+
+    public void setFavBtnClickListener(View.OnClickListener favBtnClickListener) {
+        this.favBtnClickListener = favBtnClickListener;
     }
 
     @Override
@@ -47,23 +53,28 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
         else
             holder.btnLike.setImageResource(R.drawable.fav_gray_24dp);
 
-        holder.btnLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pos = holder.getAdapterPosition();
-                ComicItem ci = mValues.get(pos);
-                if(ci.isFavoriate == false) {
-                    ci.isFavoriate = true;
-                    ci.numlikes++;
+        if(favBtnClickListener == null) {
+            holder.btnLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = holder.getAdapterPosition();
+                    ComicItem ci = mValues.get(pos);
+                    if(ci.isFavoriate == false) {
+                        ci.isFavoriate = true;
+                        ci.numlikes++;
 
-                } else {
-                    ci.isFavoriate = false;
-                    ci.numlikes--;
+                    } else {
+                        ci.isFavoriate = false;
+                        ci.numlikes--;
+                    }
+                    notifyItemChanged(pos);
+
                 }
-                notifyItemChanged(pos);
+            });
+        } else {
+            holder.btnLike.setOnClickListener(favBtnClickListener);
+        }
 
-            }
-        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

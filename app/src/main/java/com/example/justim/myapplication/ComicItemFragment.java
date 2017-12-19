@@ -25,6 +25,7 @@ public class ComicItemFragment extends Fragment {
     private int mColumnCount = 1;
 
     protected OnListFragmentInteractionListener mListener;
+    protected RecyclerView rcComicItems;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -36,6 +37,7 @@ public class ComicItemFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        rcComicItems = null;
 
     }
 
@@ -50,6 +52,7 @@ public class ComicItemFragment extends Fragment {
             RecyclerView recyclerView = (RecyclerView) view;
             setLayoutManager(context, recyclerView);
             setAdapter(recyclerView);
+            rcComicItems = recyclerView;
         }
         return view;
     }
