@@ -23,13 +23,13 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class FavoriateComicItemFragment extends Fragment {
+public class FavoriateComicItemFragment extends ComicItemFragment {
     private List<ComicContent.ComicItem> fav_items;
 
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    //private int mColumnCount = 1;
 
-    private OnListFragmentInteractionListener mListener;
+    //private OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -55,41 +55,51 @@ public class FavoriateComicItemFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favoriatecomicitem_list, container, false);
-
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(fav_items, mListener));
-        }
-        return view;
+    protected void setAdapter(RecyclerView recyclerView) {
+        //super.setAdapter(recyclerView);
+        recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(fav_items, super.mListener));
     }
 
+    public void reflash() {
+        filterFavoriateItems();
+    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
+    //    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_favoriatecomicitem_list, container, false);
+//
+//        // Set the adapter
+//        if (view instanceof RecyclerView) {
+//            Context context = view.getContext();
+//            RecyclerView recyclerView = (RecyclerView) view;
+//            if (mColumnCount <= 1) {
+//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+//            } else {
+//                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+//            }
+//            recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(fav_items, mListener));
 //        }
-    }
+//        return view;
+//    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+////        if (context instanceof OnListFragmentInteractionListener) {
+////            mListener = (OnListFragmentInteractionListener) context;
+////        } else {
+////            throw new RuntimeException(context.toString()
+////                    + " must implement OnListFragmentInteractionListener");
+////        }
+//    }
+
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -101,8 +111,8 @@ public class FavoriateComicItemFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
-    }
+//    public interface OnListFragmentInteractionListener {
+//        // TODO: Update argument type and name
+//        void onListFragmentInteraction(DummyItem item);
+//    }
 }
