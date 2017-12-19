@@ -24,7 +24,7 @@ public class ComicItemFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
-    private OnListFragmentInteractionListener mListener;
+    protected OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,16 +48,23 @@ public class ComicItemFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(ComicContent.ITEMS, mListener));
+            setLayoutManager(context, recyclerView);
+            setAdapter(recyclerView);
         }
         return view;
     }
 
+    protected void setAdapter(RecyclerView recyclerView) {
+        recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(ComicContent.ITEMS, mListener));
+    }
+
+    protected void setLayoutManager(Context context, RecyclerView recyclerView) {
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        }
+    }
 
 
     @Override
