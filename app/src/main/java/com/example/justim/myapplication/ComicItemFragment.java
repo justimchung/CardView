@@ -59,6 +59,12 @@ public class ComicItemFragment extends Fragment {
     }
 
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

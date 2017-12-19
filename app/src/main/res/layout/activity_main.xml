@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.example.justim.myapplication.MainActivity">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.example.justim.myapplication.ComicItemFragment"
+
+    <android.support.design.widget.TabLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/sliding_tabs">
+
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpFragment"
+        android:layout_width="0dp"
+        android:layout_height="0px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sliding_tabs" />
 </android.support.constraint.ConstraintLayout>
