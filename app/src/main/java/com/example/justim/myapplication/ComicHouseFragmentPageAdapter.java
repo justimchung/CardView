@@ -19,6 +19,8 @@ public class ComicHouseFragmentPageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if(position == 0)
             return new ComicItemFragment();
+        else if(position == 1)
+            return new FavoriateComicItemFragment();
         else
             return new MyFragment();
     }
