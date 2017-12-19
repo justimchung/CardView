@@ -42,20 +42,26 @@ public class MyComicItemRecyclerViewAdapter extends RecyclerView.Adapter<MyComic
         holder.tvTitle.setText(mValues.get(position).title);
         holder.ivCover.setImageResource(mValues.get(position).imgID);
         holder.tvLikes.setText(String.valueOf(mValues.get(position).numlikes) + " likes");
+        if(holder.mItem.isFavoriate)
+            holder.btnLike.setImageResource(R.drawable.fav_red_24dp);
+        else
+            holder.btnLike.setImageResource(R.drawable.fav_gray_24dp);
 
         holder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImageButton btnLike = (ImageButton)(view);
-                int fav = Integer.valueOf((String)btnLike.getTag());
-                if(fav == 0) {
-                    int pos = holder.getAdapterPosition();
-                    ComicItem ci = mValues.get(pos);
+                int pos = holder.getAdapterPosition();
+                ComicItem ci = mValues.get(pos);
+                if(ci.isFavoriate == false) {
+                    ci.isFavoriate = true;
                     ci.numlikes++;
-                    btnLike.setTag("1");
-                    btnLike.setImageResource(R.drawable.fav_red_24dp);
-                    notifyItemChanged(pos);
+
+                } else {
+                    ci.isFavoriate = false;
+                    ci.numlikes--;
                 }
+                notifyItemChanged(pos);
+
             }
         });
 
