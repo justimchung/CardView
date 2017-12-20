@@ -21,6 +21,7 @@ import com.example.justim.myapplication.comicitem.ComicContent.ComicItem;
  */
 public class ComicItemFragment extends Fragment {
 
+    protected MyComicItemRecyclerViewAdapter adapter;
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
@@ -32,13 +33,13 @@ public class ComicItemFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public ComicItemFragment() {
+        adapter = null;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         rcComicItems = null;
-
     }
 
     @Override
@@ -49,6 +50,7 @@ public class ComicItemFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
+            createAdapter();
             RecyclerView recyclerView = (RecyclerView) view;
             setLayoutManager(context, recyclerView);
             setAdapter(recyclerView);
@@ -57,8 +59,17 @@ public class ComicItemFragment extends Fragment {
         return view;
     }
 
+    public MyComicItemRecyclerViewAdapter getAdapter() {
+        return adapter;
+    }
+
+    protected void createAdapter() {
+        adapter = new MyComicItemRecyclerViewAdapter(ComicContent.ITEMS, mListener);
+    }
+
+
     protected void setAdapter(RecyclerView recyclerView) {
-        recyclerView.setAdapter(new MyComicItemRecyclerViewAdapter(ComicContent.ITEMS, mListener));
+        recyclerView.setAdapter(adapter);
     }
 
     protected void setLayoutManager(Context context, RecyclerView recyclerView) {

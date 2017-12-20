@@ -29,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
                     int index = vpFragment.getCurrentItem();
                     FavoriateComicItemFragment tabFragment = (FavoriateComicItemFragment) adapter.instantiateItem(vpFragment, index);
                     tabFragment.reflash();
-                    RecyclerView rclist = (RecyclerView) tabFragment.getView().findViewById(R.id.list);
-                    rclist.getAdapter().notifyDataSetChanged();
+                    tabFragment.getAdapter().notifyDataSetChanged();
+                } else if(position == 0) {
+                    int index = vpFragment.getCurrentItem();
+                    ComicItemFragment tabFragment = (ComicItemFragment) adapter.instantiateItem(vpFragment, index);
+                    tabFragment.getAdapter().notifyDataSetChanged();
                 }
 
 
